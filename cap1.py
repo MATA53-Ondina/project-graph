@@ -96,6 +96,17 @@ def fco(graph):
                     t[v] = tmp # atualizar a posição de t em Q
 
 
+def Minimo(distancia,Q):
+    aux = float('inf')
+    menor = 0
+    for i in Q:
+      if Q['peso'] < aux:
+        menor = i
+        aux = Q['peso']
+        
+    return menor
+
+
 def dijkstra(graph, distancia, predecessor):
 
     Q = []
@@ -108,7 +119,7 @@ def dijkstra(graph, distancia, predecessor):
         Q.push(vertex)
 
     while len(Q) > 0:
-        u = extraiMinimo(distancia,Q)
+        u = Minimo(distancia,Q)
 
         for t in v["adj"]:
             if (distancia[t] > distancia[u] + graph['peso']):
