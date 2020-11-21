@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+# -*- coding: utf-8 -*-
 # imports
 import sys
 import math
@@ -201,8 +202,44 @@ def fco(graph):
                     graph[t]["v"] = tmp # atualizar a posição de t em Q
 
 
+def Minimo(distancia,Q):
+    aux = float('inf')
+    menor = 0
+    for i in Q:
+      if Q['peso'] < aux:
+        menor = i
+        aux = Q['peso']
+        
+    return menor
+
+
+def dijkstra(graph, distancia, predecessor):
+
+    Q = []
+
+    for v in grapf:
+        distancia[v] = float('inf') #defini a variavel com um valor muito grande
+        predecessor[v] = -1
+
+    for vertex in graph: #Passando todos os vertices do grafo para Q
+        Q.push(vertex)
+
+    while len(Q) > 0:
+        u = Minimo(distancia,Q)
+
+        for t in v["adj"]:
+            if (distancia[t] > distancia[u] + graph['peso']):
+                distancia[t] = distancia[u] + graph['peso']
+                predecessor[t] = u
+
+    return distancia, predecessor
+
 def main():
     fco(graph)
+
+    distancia = []
+    predecessor = []
+    distancia, predecessor = dijkstra(graph, distancia, predecessor)
 
 if __name__ == "__main__":
         main()
